@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-
+    // Variable to allow us to animate the player model
     Animator animator;
+    // Bool to figure out if the player is touching the ground or not
     bool OnGround;
+    // Variable to give additional control over the player model's rigidbody
     Rigidbody rigidbody;
     // Variable to control how high a character can jump
     public Vector3 jumpForce;
@@ -14,7 +16,9 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // At start it pulls the animator for player model
         animator = GetComponent<Animator>();
+        // At start it pulls the rigidbody of the player model
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -23,12 +27,15 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Reads the horizonal position of the player model
         var horizontal = Input.GetAxis("Horizontal");
+        // Reads the vertical position of the player model
         var vertical = Input.GetAxis("Vertical");
-
+        // Increases input of direction to 3 to help animator understand what animation to play
         horizontal *= 3f;
         vertical *= 3f;
         Vector3 movementVector = new Vector3(horizontal, 0f, vertical);
+        // Code block for OnGround bool
         if (OnGround)
         {
             // Makes sure player moves in global directions
@@ -57,7 +64,7 @@ public class CharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && OnGround)
         {
             animator.Play("Rifle Jump");
-            // Registers if character is on ground
+            // Registers that the player is not touching the ground
             OnGround = false;
             // Disable root motion to make sure it doesn't interfere with player movement
             animator.applyRootMotion = false;
@@ -71,7 +78,9 @@ public class CharacterController : MonoBehaviour
         // Register if player is on the layer "ground"
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            // Registers that the player is touching the ground
             OnGround = true;
+            // Enables root motion to make sure it doesn't interfere with player movement
             animator.applyRootMotion = true;
         }
     }
