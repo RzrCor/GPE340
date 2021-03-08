@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    // Stores original speed
+    float originalSpeed;
+    // How fast the player is moving
+    [SerializeField]
+    float Speed = 3f;
+    // How long speed pickup lasts
+    [SerializeField]
+    float speedUpTime = 15f;
+    // Timer to keep track of the speed pickup
+    float _speedTimer;
+
     // Variable to allow us to animate the player model
     Animator animator;
     // Bool to figure out if the player is touching the ground or not
     bool OnGround;
     // Variable to give additional control over the player model's rigidbody
-    Rigidbody rigidbody;
+    new Rigidbody rigidbody;
     // Variable to control how high a character can jump
     public Vector3 jumpForce;
 
@@ -32,8 +43,8 @@ public class CharacterController : MonoBehaviour
         // Reads the vertical position of the player model
         var vertical = Input.GetAxis("Vertical");
         // Increases input of direction to 3 to help animator understand what animation to play
-        horizontal *= 3f;
-        vertical *= 3f;
+        horizontal *= Speed;
+        vertical *= Speed;
         Vector3 movementVector = new Vector3(horizontal, 0f, vertical);
         // Code block for OnGround bool
         if (OnGround)
@@ -71,8 +82,41 @@ public class CharacterController : MonoBehaviour
             rigidbody.AddForce(jumpForce, ForceMode.Impulse);
         }
         animator.SetBool("onGround", OnGround);
+        // Starts timer for speed pickup duration if it's above 0
+        if (_speedTimer > 0f)
+        {
+            // Causes timer to countdown
+            _speedTimer -= Time.deltaTime;
+            // Checks if timer is less than or equal to 0
+            if (_speedTimer <= 0f)
+            {
+                // Returns speed to normal
+                Speed = originalSpeed;
+            }
+        }
+        // If speed is less than or equal to 3
+        if (Speed <= 3f)
+        {
+            // Keep speed as normal
+            animator.speed = 1f;
+        }
+        // If speed is greater than 3
+        else if (Speed > 3f)
+        {
+            // Make the animation go faster
+            animator.speed = Speed / 3f;
+        }
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        // Store original speed for later
+        originalSpeed = Speed;
+        // Set the new speed
+        Speed = newSpeed;
+        // Start the speed timer
+        _speedTimer = speedUpTime;
+    }
     void OnCollisionEnter(Collision collision)
     {
         // Register if player is on the layer "ground"
