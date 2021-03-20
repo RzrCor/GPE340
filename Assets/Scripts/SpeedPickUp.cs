@@ -8,7 +8,7 @@ public class SpeedPickUp : PickUp
     [SerializeField]
     float fasterSpeed = 6f;
 
-    public override void OnPickup(CharacterController character)
+    public override void OnPickup(Character character)
     {
         // Sets character speed to pickup speed
         character.SetSpeed(fasterSpeed);

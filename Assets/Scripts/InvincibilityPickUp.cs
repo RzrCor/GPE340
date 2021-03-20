@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InvincibilityPickUp : PickUp
 {
-    public override void OnPickup(CharacterController character)
+    public override void OnPickup(Character character)
     {
         throw new System.NotImplementedException();
     }

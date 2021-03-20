@@ -6,9 +6,9 @@ public class WeaponPickUp : PickUp
 {
     // Weapon to equip
     [SerializeField]
-    GameObject weapon;
+    public GameObject weapon;
 
-    public override void OnPickup(CharacterController character)
+    public override void OnPickup(Character character)
     {
         // Equip weapon to player
         character.GetComponent<WeaponUser>().EquipWeapon(weapon);

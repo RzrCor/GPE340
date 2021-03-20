@@ -14,9 +14,10 @@ public class AssaultRilfe : Weapon
     [SerializeField]
     GameObject Muzzle;
     // Fire rate for weapon
-    [SerializeField]
-    float timeBetweenShots = 0f;
     float _timer;
+    // Allows us to set the damage in the inspector
+    [SerializeField]
+    float damage = 10f;
     public override void Shoot(Vector3 target)
     {
         // If timer is less than or equal to 0
@@ -28,6 +29,10 @@ public class AssaultRilfe : Weapon
             bulletCopy.transform.position = Muzzle.transform.position;
             // Get the rigidbody of the bullet
             var bulletRigidbody = bulletCopy.GetComponent<Rigidbody>();
+            // Gets the bullet component
+            var bullet = bulletCopy.GetComponent<Bullet>();
+            // Sets bullets damage to what it's set as in the inspector
+            bullet.bulletDamage = damage;
             // Create a vector that points towards the target
             Vector3 bulletDirection = target - bulletCopy.transform.position;
             // Normalize the vector to a length of one

@@ -7,7 +7,7 @@ public class HealthUI : MonoBehaviour
 {
     TextMeshProUGUI textComponent;
 
-    void Start()
+    void Awake()
     {
         textComponent = GetComponent<TextMeshProUGUI>();
     }

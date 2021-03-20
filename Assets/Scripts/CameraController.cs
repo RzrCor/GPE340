@@ -12,7 +12,10 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Allows us to set camera position in the inspector
-        transform.position = Target.position + Offset;
+        if (Target != null)
+        {
+            // Allows us to set camera position in the inspector
+            transform.position = Target.position + Offset;
+        }
     }
 }

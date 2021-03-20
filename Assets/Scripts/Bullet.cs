@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     float lifetime = 5f;
     // How much damage the bullet does
-    [SerializeField]
-    float bulletDamage = 10f;
+    [NonSerialized]
+    public float bulletDamage = 10f;
     // Called whenever it collides with something
     private void OnCollisionEnter(Collision collision)
     {

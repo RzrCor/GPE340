@@ -13,12 +13,11 @@ public class SniperRifle : Weapon
     // Position of the muzzle
     [SerializeField]
     GameObject Muzzle;
-    // Fire rate for weapon
-    [SerializeField]
-    float timeBetweenShots = 2f;
+    // Fire rate for weapon   
     float _timer;
-
-   
+    // Sets standard bullet damage to 10
+    [SerializeField]
+    float damage = 10f;
     public override void Shoot(Vector3 target)
     {
         // If timer is less than or equal to 0
@@ -30,6 +29,10 @@ public class SniperRifle : Weapon
             bulletCopy.transform.position = Muzzle.transform.position;
             // Get the rigidbody of the bullet
             var bulletRigidbody = bulletCopy.GetComponent<Rigidbody>();
+            // Gets the bullet component
+            var bullet = bulletCopy.GetComponent<Bullet>();
+            // Sets bullets damage to what it's set as in the inspector
+            bullet.bulletDamage = damage;
             // Create a vector that points towards the target
             Vector3 bulletDirection = target - bulletCopy.transform.position;
             // Normalize the vector to a length of one

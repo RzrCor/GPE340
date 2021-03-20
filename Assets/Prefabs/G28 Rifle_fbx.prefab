@@ -207,8 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8faa732944015d74694137b444c346ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenShots: 2
   BulletPrefab: {fileID: 6294453950489894415, guid: 56b4eeebdeebf0c499969db0c0883b9a,
     type: 3}
   bulletVelocity: 50
   Muzzle: {fileID: 3841532137424479641}
-  timeBetweenShots: 2
+  damage: 25

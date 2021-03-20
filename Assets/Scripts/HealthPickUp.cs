@@ -8,7 +8,7 @@ public class HealthPickUp : PickUp
     [SerializeField]
     float healAmount = 25f;
 
-    public override void OnPickup(CharacterController character)
+    public override void OnPickup(Character character)
     {
         // Gets player's health function and heals by amount set for pickup
         character.GetComponent<Health>().Heal(healAmount);

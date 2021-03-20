@@ -10,16 +10,26 @@ public class WeaponUser : MonoBehaviour
     [SerializeField]
     GameObject weaponContainer;
     // Currently equipped weapon on player
-    GameObject CurrentlyEquippedWeapon;
-
+    public GameObject CurrentlyEquippedWeapon;
+    // Allows us to set a starting weapon
+    [SerializeField]
+    Weapon startingWeapon;
     void Start()
     {
         // Gets the animator component on the character
         animator = GetComponent<Animator>();
+        if (startingWeapon != null)
+        {
+            EquipWeapon(startingWeapon.gameObject);
+        }
     }
     // Equips weapon to the player
     public void EquipWeapon(GameObject weaponToEquip)
     {
+        if (CurrentlyEquippedWeapon != null)
+        {
+            Destroy(CurrentlyEquippedWeapon);
+        }
         //Creates a copy of the gun prefab
         var gunCopy = GameObject.Instantiate(weaponToEquip);
         // Sets the new copy to the weapon container
@@ -61,27 +71,13 @@ public class WeaponUser : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void ShootWeapon(Vector3 target)
     {
-        // If Mouse one is pressed
-        if (Input.GetMouseButton(0))
+        // Check if a weapon is equipped
+        if (CurrentlyEquippedWeapon != null)
         {
-            // Check if a weapon is equipped
-            if (CurrentlyEquippedWeapon != null)
-            {
-                // Create a ray that starts at the mouse position
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                // Stores the results of the raycast
-                RaycastHit hit;
-                // Fires the ray at the world
-                // Ray starts at camera and points to the world
-                if (Physics.Raycast(ray, out hit))
-                {
-                    // Get the weapon component and cause it to shoot at the point
-                    CurrentlyEquippedWeapon.GetComponent<Weapon>().Shoot(hit.point);
-                }
-            }
+            // Get the weapon component and cause it to shoot at the point
+            CurrentlyEquippedWeapon.GetComponent<Weapon>().Shoot(target);
         }
-
     }
 }

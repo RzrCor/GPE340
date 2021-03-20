@@ -10,6 +10,10 @@ public class Respawner : MonoBehaviour
     // Delay between respawning
     [SerializeField]
     float timeToRespawn = 5f;
+
+    [SerializeField]
+    GameObject objectToTrack;
+
     // Function to respawn object
     public void RespawnObject()
     {
@@ -23,5 +27,31 @@ public class Respawner : MonoBehaviour
         yield return new WaitForSeconds(timeToRespawn);
         //Spawn a copy of the dummy at the location and rotation of the respawner object
         var dummyCopy = GameObject.Instantiate(ObjectToRespawn, transform.position, transform.rotation);
+        // Tracks the new copy
+        objectToTrack = dummyCopy;
+        // Start a routine to wait for the object to die
+        StartCoroutine(WaitForObjectToDie());
+    }
+
+    void OnDrawGizmos()
+    {
+        // Sets of color of gizmo
+        Gizmos.color = new Color(1, 1, 1, 0.25f);
+        // draws a cube as the gizmo
+        Gizmos.DrawCube(transform.position, new Vector3(1, 3, 1));
+    }
+
+    private void Awake()
+    {
+        // Starts routine to wait for the tracked object to die
+        StartCoroutine(WaitForObjectToDie());
+    }
+
+    IEnumerator WaitForObjectToDie()
+    {
+        // Waits until the object is destroyed
+        yield return new WaitUntil(() => objectToTrack == null);
+        // Respawn object
+        RespawnObject();
     }
 }
