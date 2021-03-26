@@ -13,10 +13,16 @@ public abstract class PickUp : MonoBehaviour
         // Checks if the layer is for Player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") ||  collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            // Get the character controller component and pass it into the on pick up function
-            OnPickup(collision.gameObject.GetComponent<Character>());
-            // Pickup will disappear after pick up
-            Destroy(gameObject);
+            // Get the health component on the character collided with
+            var health = collision.gameObject.GetComponent<Health>();
+            if (health != null && health.health > 0)
+            {
+
+                // Get the character controller component and pass it into the on pick up function
+                OnPickup(collision.gameObject.GetComponent<Character>());
+                // Pickup will disappear after pick up
+                Destroy(gameObject);
+            }
         }
     }
 

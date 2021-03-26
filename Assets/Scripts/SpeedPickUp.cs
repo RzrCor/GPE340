@@ -10,7 +10,10 @@ public class SpeedPickUp : PickUp
 
     public override void OnPickup(Character character)
     {
-        // Sets character speed to pickup speed
-        character.SetSpeed(fasterSpeed);
+        if (character != null && character is Player)
+        {
+            // Sets character speed to pickup speed
+            character.SetSpeed(fasterSpeed);
+        }
     }
 }

@@ -7,10 +7,10 @@ public class Health : MonoBehaviour
 {
     // Put health as a modifiable component in the inspector for current health
     [SerializeField]
-    float health = 100f;
+    public float health = 100f;
     // Put health as a modifiable component in the inspector for max health
     [SerializeField]
-    float maxHealth = 100f;
+    public float maxHealth = 100f;
    // Event that's triggered when health component starts
     [SerializeField]
     UnityEvent<float> OnStart;

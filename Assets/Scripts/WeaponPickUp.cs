@@ -10,7 +10,10 @@ public class WeaponPickUp : PickUp
 
     public override void OnPickup(Character character)
     {
-        // Equip weapon to player
-        character.GetComponent<WeaponUser>().EquipWeapon(weapon);
+        if (character != null)
+        {
+            // Equip weapon to player
+            character.GetComponent<WeaponUser>().EquipWeapon(weapon);
+        }
     }
 }

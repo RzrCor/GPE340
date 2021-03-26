@@ -1617,6 +1617,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4515473322580162857}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: MakeEnemyDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4515473322580162857}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: DoRandomDrop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!195 &4515473322580162858
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1651,10 +1675,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda760d896c7fb84587c62ceedbf368e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 2.5
   speedUpTime: 15
   jumpForce: {x: 0, y: 0, z: 0}
   targetPlayer: {fileID: 0}
+  Drops:
+  - Probability: 5
+    DropItem: {fileID: 191186921478621197, guid: f190f2099badb9d47b178315ed86f8c4,
+      type: 3}
+  - Probability: 1
+    DropItem: {fileID: 6448337938058099432, guid: 629ffe83c283e174e99714b0ec75ae28,
+      type: 3}
+  - Probability: 2
+    DropItem: {fileID: 2068600676720710055, guid: c45fef284e5153648b31d97031b3348c,
+      type: 3}
+  - Probability: 2
+    DropItem: {fileID: 8554959212609864651, guid: 361ea23d8f2984548be399b772696d1f,
+      type: 3}
 --- !u!114 &4515473322580162856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,6 +1707,9 @@ MonoBehaviour:
   weaponContainer: {fileID: 2968798995723234083}
   CurrentlyEquippedWeapon: {fileID: 0}
   startingWeapon: {fileID: 0}
+  OnWeaponEquipped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1889665015166145430
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponUser : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class WeaponUser : MonoBehaviour
     // Allows us to set a starting weapon
     [SerializeField]
     Weapon startingWeapon;
+    // The on weapon equipped event
+    [SerializeField]
+    UnityEvent<Weapon> OnWeaponEquipped;
     void Start()
     {
         // Gets the animator component on the character
@@ -32,6 +36,8 @@ public class WeaponUser : MonoBehaviour
         }
         //Creates a copy of the gun prefab
         var gunCopy = GameObject.Instantiate(weaponToEquip);
+        // Sets the name of the copy
+        gunCopy.name = weaponToEquip.name;
         // Sets the new copy to the weapon container
         gunCopy.transform.SetParent(weaponContainer.transform);
         // Positions the gun correctly on the weapon container
@@ -40,6 +46,11 @@ public class WeaponUser : MonoBehaviour
         gunCopy.transform.localRotation = Quaternion.identity;
         // Sets the currently equipped weapon
         CurrentlyEquippedWeapon = gunCopy;
+        // calls the on weapon equipped event
+        if (OnWeaponEquipped != null)
+        {
+            OnWeaponEquipped.Invoke(CurrentlyEquippedWeapon.GetComponent<Weapon>());
+        }
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -80,4 +91,6 @@ public class WeaponUser : MonoBehaviour
             CurrentlyEquippedWeapon.GetComponent<Weapon>().Shoot(target);
         }
     }
+
+
 }
