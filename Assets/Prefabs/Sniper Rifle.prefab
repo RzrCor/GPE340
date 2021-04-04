@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3981003055447022426}
   - component: {fileID: 7222696842892650206}
   m_Layer: 0
-  m_Name: G28 Rifle_fbx
+  m_Name: Sniper Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,3 +213,8 @@ MonoBehaviour:
   bulletVelocity: 50
   Muzzle: {fileID: 3841532137424479641}
   damage: 25
+  shootSound: {fileID: 8300000, guid: a565fc3cffe70d84bb4dc9f7bd58750e, type: 3}
+  MuzzleFlashPrefab: {fileID: 7149316242525439877, guid: 96ec61b695c57954499d97d90ffdd07c,
+    type: 3}
+  AudioPlayerPrefab: {fileID: -7875706348340295478, guid: 0a71a4668191f0349af38c899a8038fa,
+    type: 3}

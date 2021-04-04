@@ -14,7 +14,6 @@ public class Character : MonoBehaviour
     float speedUpTime = 15f;
     // Timer to keep track of the speed pickup
     float _speedTimer;
-
     // Variable to allow us to animate the player model
     protected Animator animator;
     // Bool to figure out if the player is touching the ground or not
@@ -23,6 +22,8 @@ public class Character : MonoBehaviour
     protected new Rigidbody rigidbody;
     // Variable to control how high a character can jump
     public Vector3 jumpForce;
+    // The health component on the character
+    Health characterHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         // At start it pulls the rigidbody of the player model
         rigidbody = GetComponent<Rigidbody>();
+        // gets the health component
+        characterHealth = GetComponent<Health>();
     }
 
 
@@ -83,6 +86,14 @@ public class Character : MonoBehaviour
             OnGround = true;
             // Enables root motion to make sure it doesn't interfere with player movement
             animator.applyRootMotion = true;
+        }
+        // Gets Lava component
+        var lava = collision.gameObject.GetComponent<Lava>();
+        // If the object we collided with has a lava component on it
+        if (lava != null)
+        {
+            // Character takes damage
+            characterHealth.Damage(lava.Damage);
         }
     }
 

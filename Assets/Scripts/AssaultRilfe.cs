@@ -18,6 +18,15 @@ public class AssaultRilfe : Weapon
     // Allows us to set the damage in the inspector
     [SerializeField]
     float damage = 10f;
+    // The sound for when the gun shoots
+    [SerializeField]
+    AudioClip shootSound;
+    // Prefab for the muzzle flash
+    [SerializeField]
+    GameObject MuzzleFlashPrefab;
+    // Prefab for playing the shoot sound
+    [SerializeField]
+    SoundPlayer AudioPlayerPrefab;
     public override void Shoot(Vector3 target)
     {
         // If timer is less than or equal to 0
@@ -43,6 +52,12 @@ public class AssaultRilfe : Weapon
             bulletRigidbody.velocity = bulletDirection;
             // Reset fire rate timer
             _timer = timeBetweenShots;
+            // Creates the audio player
+            var audioPlayer = GameObject.Instantiate(AudioPlayerPrefab, Muzzle.transform.position, Quaternion.identity);
+            // Plays shoot sound effect
+            audioPlayer.PlaySound(shootSound);
+            // Creates the muzzle flash
+            GameObject.Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, Quaternion.identity);
         }
     }
     private void Update()

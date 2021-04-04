@@ -57,4 +57,17 @@ public class PauseMenu : MonoBehaviour
             PauseGame();
         }
     }
+
+    public void HidePauseMenu()
+    {
+        // Hides pause menu
+        Activator.SetActive(false);
+    }
+
+
+    public void ShowPauseMenu()
+    {
+        // Shows pause menu
+        Activator.SetActive(true);
+    }
 }

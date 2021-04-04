@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
+
+    [SerializeField]
+    GameObject Activator;
+
     public void StartGame()
     {
         // Loads the Game Scene
@@ -13,5 +17,18 @@ public class MainMenu : MonoBehaviour
     {
         // Quits game
         Application.Quit();
+    }
+
+    
+    public void ShowMainMenu()
+    {
+        // Shows main menu
+        Activator.SetActive(true);
+    }
+
+    public void HideMainMenu()
+    {
+        // Hides main menu
+        Activator.SetActive(false);
     }
 }

@@ -11,6 +11,10 @@ public class Bullet : MonoBehaviour
     // How much damage the bullet does
     [NonSerialized]
     public float bulletDamage = 10f;
+    // Prefab for when the bullet hits something
+    [SerializeField]
+    GameObject HitEffectPrefab;
+
     // Called whenever it collides with something
     private void OnCollisionEnter(Collision collision)
     {
@@ -21,6 +25,8 @@ public class Bullet : MonoBehaviour
             // Deals damage to object
             health.Damage(bulletDamage);
         }
+
+        GameObject.Instantiate(HitEffectPrefab, transform.position, Quaternion.identity);
         // Bullet disappears on hit
         Destroy(gameObject);
         

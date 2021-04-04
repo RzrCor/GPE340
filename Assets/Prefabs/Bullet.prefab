@@ -125,3 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de94d7e3a5274b147bdaa6720a5b121e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifetime: 5
+  HitEffectPrefab: {fileID: 3324459046422260904, guid: 69d6bbd15f0fc4944ac007b68bc71ecc,
+    type: 3}

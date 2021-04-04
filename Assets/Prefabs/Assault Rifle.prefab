@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4901716042673409121}
   - component: {fileID: 4411559355310792813}
   m_Layer: 0
-  m_Name: Assault_Rifle_M4
+  m_Name: Assault Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,11 +107,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6456da96c2e0584db1a010b2e087dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenShots: 0.15
   BulletPrefab: {fileID: 6294453950489894415, guid: 56b4eeebdeebf0c499969db0c0883b9a,
     type: 3}
   bulletVelocity: 10
   Muzzle: {fileID: 8808036366512067183}
-  timeBetweenShots: 0.15
+  damage: 10
+  shootSound: {fileID: 8300000, guid: 91bb515c59cbf8442bede58130a9f84e, type: 3}
+  MuzzleFlashPrefab: {fileID: 7149316242525439877, guid: 96ec61b695c57954499d97d90ffdd07c,
+    type: 3}
+  AudioPlayerPrefab: {fileID: -7875706348340295478, guid: 0a71a4668191f0349af38c899a8038fa,
+    type: 3}
 --- !u!1 &6497815333974057073
 GameObject:
   m_ObjectHideFlags: 0
